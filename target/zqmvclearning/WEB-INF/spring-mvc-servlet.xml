@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--激活 @Required @AutoWired,JSR 250's @PostConstruct,@PreDestroy and @Resource 等标注 -->
+    <context:annotation-config/>
+
+    <!-- DispatcherServlet 上下文，只管理@Controller标注的类，不搜索其他 如@Service -->
+    <context:component-scan base-package="cn.bzy*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 url查询参数，直接映射到controller 某个方法中的入参-->
+    <mvc:annotation-driven/>
+
+    <!-- 静态资源处理 js css images ;若web.xml中配置为 <url-pattern>/</url-pattern> ，则访问webapp下静态资源需要配置如下配置-->
+    <mvc:resources mapping="/*" location="images"/>
+
+    <!-- 配置ViewResolver
+            可以用多个ViewResolver
+            使用order实行排序
+            InternalResourceViewResolver 放在最后面。
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsps/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>

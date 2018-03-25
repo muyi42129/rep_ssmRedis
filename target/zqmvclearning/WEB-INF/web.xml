@@ -1,0 +1,26 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<!-- 2.3版本自动将el表达式忽略，若使用则需更换版本，或在页面显式声明<mvc:resources mapping="/*" location="images"/>  -->
+<web-app>
+    <display-name>Spring MVC Learning</display-name>
+
+    <!-- Spring 应用上下文，理解层次化的ApplicationContext -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext*.xml</param-value>
+    </context-param>
+
+    <!-- DispatcherServlet Spring MVC的核心 -->
+    <servlet>
+        <servlet-name>spring-mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 不配置contextConfigLocation 默认为：/WEB-INF/$servlet-name$-servlet.xml -->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>

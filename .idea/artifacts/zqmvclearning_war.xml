@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zqmvclearning:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="zqmvclearning.war">
+      <element id="artifact" artifact-name="zqmvclearning:war exploded" />
+    </root>
+  </artifact>
+</component>
